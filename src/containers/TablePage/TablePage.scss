@@ -1,0 +1,22 @@
+.table-page {
+	&__input-group {
+		margin: 20px 0;
+	}
+
+	&__add {
+		text-align: right;
+	}
+
+	&__table {
+		margin-top: 2px;
+	}
+
+	&__card {
+		margin-bottom: 20px;
+	}
+
+	&__pagination {
+		display: flex;
+		justify-content: center;
+	}
+}

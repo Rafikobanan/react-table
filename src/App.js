@@ -1,9 +1,12 @@
 import React from 'react';
+import Layout from './hoc/Layout/Layout';
+import TablePage from './containers/TablePage';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Layout>
+			<TablePage />
+		</Layout>
   );
 }
 
