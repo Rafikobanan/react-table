@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import Table from '../../components/Table';
+import { recordsPerPage } from './utils';
 import { Context } from '../../context/context';
 import { SORT_BY_KEY, SET_CARD } from '../../reducer/types';
-import { recordsPerPage } from './utils';
 
 function TablePageTable({currentPageIndex = 0}) {
 	const {state, dispatch} = useContext(Context);
