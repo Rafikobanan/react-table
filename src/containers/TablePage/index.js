@@ -1,44 +1,56 @@
-import React from 'react';
-import Table from '../../components/Table';
-import { data } from './storage';
-import Pagination from '../../components/Pagination';
-import InputGroup from '../../components/UI/InputGroup';
+import React, { useContext, useState, useEffect } from 'react';
+import TablePageInputGroup from './TablePageInputGroup';
+import TablePageAdd from './TablePageAdd';
+import TablePageTable from './TablePageTable';
+import TablePageCard from './TablePageCard';
+import TablePagePagination from './TablePagePagination';
 import './TablePage.scss';
-import Button from '../../components/UI/Button';
-import Card from '../../components/Card/Card';
+import TablePageFirst from './TablePageFirst';
+import { Context } from '../../context/context';
+import Loader from '../../components/Loader/Loader';
+import { calculateLastPageIndex } from './utils';
+import Error from '../../components/Error/Error';
+
+const withTableWrapper = (WrappedComponent) => () => (
+	<div className="table-page">
+		<WrappedComponent />
+	</div>
+);
 
 function TablePage() {
-	const columnNames = [
-		'Id',
-		'First name',
-		'Last name',
-		'Email',
-		'Phone'
-	];
+	const {state} = useContext(Context);
+	const [currentPageIndex, setCurrentPageIndex] = useState(0);
+	const lastPageIndex = calculateLastPageIndex(state.dataToShow.length);
 
-	const dataToShow = data.map((item) => [
-		item['id'], item['firstName'], item['lastName'], item['email'], item['phone']
-	]);
+	const changeCurrentPageIndexHandler = (index) => {
+		if (index < 0) index = 0;
+		if (index > lastPageIndex) index = lastPageIndex;
+		setCurrentPageIndex(index);
+	};
+
+	useEffect(() => {
+		setCurrentPageIndex(0);
+	}, [state.dataToShow]);
+
+	if (state.isFirst) return <TablePageFirst />
+
+	if (state.isLoading) return <Loader className="table-page__loader"/>
+
+	if (state.isError) return <Error className="table-page__error" text="Произошла ошибка при загрузке" />
 
 	return (
-		<div className="table-page">
-			<InputGroup
-				className="table-page__input-group"
-				inputProps={{placeholder: "Вставьте текст"}}
-				buttonProps={{text: 'Найти'}}
+		<>
+			<TablePageInputGroup />
+			<TablePageAdd />
+			<TablePageTable currentPageIndex={currentPageIndex}/>
+			<TablePageCard />
+			<TablePagePagination
+				currentPageIndex={currentPageIndex}
+				lastPageIndex={lastPageIndex}
+				onChangeCurrentPageIndex={changeCurrentPageIndexHandler}
 			/>
-			<div className="table-page__add">
-				<Button text="Добавить"/>
-			</div>
-			<Table
-				columnNames={columnNames}
-				data={dataToShow}
-				className="table-page__table"
-			/>
-			<Card className="table-page__card"/>
-			<Pagination className="table-page__pagination" content={[1, 2, 3]}/>
-		</div>
+		</>
 	);
 }
 
-export default TablePage;
+export default withTableWrapper(TablePage);

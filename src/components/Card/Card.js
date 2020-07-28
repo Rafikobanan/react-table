@@ -1,18 +1,24 @@
 import React from 'react';
 import './Card.scss';
 
-const Card = ({className = ''}) => (
+const Card = ({
+	className = '',
+	header = '',
+	title = '',
+	textareaValue = '',
+	onChangeTextarea = () => {},
+	data = []
+}) => (
 	<div className={`card ${className}`}>
 		<div className="card-header">
-			Выбран пользователь <b>Sue Corson</b>
+			{header}
 		</div>
 		<div className="card-body">
-			<h5 className="card-title">Описание:</h5>
-			<textarea className="card__textarea" onChange={()=>{}} value={"et lacus magna dolor..."}></textarea>
-			<p className="card-text">Адрес проживания: <b>9792 Mattis Ct</b></p>
-			<p className="card-text">Город: <b>Waukesha</b></p>
-			<p className="card-text">Провинция/штат: <b>WI</b></p>
-			<p className="card-text">Индекс: <b>22178</b></p>
+			<h5 className="card-title">{title}</h5>
+			<textarea className="card__textarea" onChange={onChangeTextarea} value={textareaValue}></textarea>
+			{data.map((item, index) => (
+				<p key={'card-text_' + index} className="card-text">{item}</p>
+			))}
 		</div>
 	</div>
 );
