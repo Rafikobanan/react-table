@@ -2,8 +2,8 @@ import React from 'react';
 
 const Input = (props) => (
 	<input
-		{...props}
 		type="text"
+		{...props}
 		className={`form-control ${props.className}`}
 		aria-label={props.placeholder}
 	/>

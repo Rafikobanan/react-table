@@ -1,4 +1,19 @@
 .table-page {
+	&__loader {
+		position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	}
+
+	&__error {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+
 	&__input-group {
 		margin: 20px 0;
 	}
@@ -9,6 +24,10 @@
 
 	&__table {
 		margin-top: 2px;
+
+		tbody tr {
+			cursor: pointer;
+		}
 	}
 
 	&__card {
@@ -18,5 +37,19 @@
 	&__pagination {
 		display: flex;
 		justify-content: center;
+	}
+}
+
+.table-page-first {
+	&__buttons {
+		display: flex;
+		justify-content: center;
+		padding: 100px 0;
+	}
+
+	&__button {
+		& + & {
+			margin-left: 10px;
+		}
 	}
 }
