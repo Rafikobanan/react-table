@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Button from '../../components/UI/Button';
-import { Context } from '../../context/context';
-import { SET_IS_LOADING, SET_IS_FIRST, SET_DATA, SET_IS_ERROR } from '../../reducer/types';
 import Axios from 'axios';
+import { Context } from '../../context/context';
 import { smallDataUrl, bigDataUrl } from './dataUrl';
+import { SET_IS_LOADING, SET_IS_FIRST, SET_DATA, SET_IS_ERROR } from '../../reducer/types';
 
 function TablePageFirst() {
 	const {dispatch} = useContext(Context);

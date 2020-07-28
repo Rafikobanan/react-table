@@ -1,6 +1,6 @@
 import React from 'react';
-import { SET_IS_FIRST, SET_IS_LOADING, SET_DATA, SORT_BY_KEY, FIND_BY_STRING, SET_IS_ERROR, SET_CARD, CHANGE_CURRENT_CARD } from "./types";
 import { uid } from './utils';
+import { SET_IS_FIRST, SET_IS_LOADING, SET_DATA, SORT_BY_KEY, FIND_BY_STRING, SET_IS_ERROR, SET_CARD, CHANGE_CURRENT_CARD } from "./types";
 
 export default function(state, action) {
 	switch (action.type) {

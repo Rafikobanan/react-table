@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
-import Layout from './hoc/Layout/Layout';
 import TablePage from './containers/TablePage';
-import reducer from './reducer/reducer';
+import Layout from './hoc/Layout/Layout';
 import { Context } from './context/context';
+import reducer from './reducer/reducer';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, {

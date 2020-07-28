@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Loader from '../../components/Loader/Loader';
+import Error from '../../components/Error/Error';
 import TablePageInputGroup from './TablePageInputGroup';
 import TablePageAdd from './TablePageAdd';
 import TablePageTable from './TablePageTable';
 import TablePageCard from './TablePageCard';
 import TablePagePagination from './TablePagePagination';
-import './TablePage.scss';
 import TablePageFirst from './TablePageFirst';
 import { Context } from '../../context/context';
-import Loader from '../../components/Loader/Loader';
 import { calculateLastPageIndex } from './utils';
-import Error from '../../components/Error/Error';
+import './TablePage.scss';
 
 const withTableWrapper = (WrappedComponent) => () => (
 	<div className="table-page">
